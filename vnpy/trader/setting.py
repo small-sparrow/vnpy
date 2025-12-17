@@ -2,19 +2,18 @@
 Global setting of the trading platform.
 """
 
-from logging import CRITICAL
-from typing import Dict, Any
+from logging import INFO
 from tzlocal import get_localzone_name
 
 from .utility import load_json
 
 
-SETTINGS: Dict[str, Any] = {
+SETTINGS: dict = {
     "font.family": "微软雅黑",
     "font.size": 12,
 
     "log.active": True,
-    "log.level": CRITICAL,
+    "log.level": INFO,
     "log.console": True,
     "log.file": True,
 
@@ -42,9 +41,3 @@ SETTINGS: Dict[str, Any] = {
 # Load global setting from json file.
 SETTING_FILENAME: str = "vt_setting.json"
 SETTINGS.update(load_json(SETTING_FILENAME))
-
-
-def get_settings(prefix: str = "") -> Dict[str, Any]:
-    prefix_length: int = len(prefix)
-    settings = {k[prefix_length:]: v for k, v in SETTINGS.items() if k.startswith(prefix)}
-    return settings
