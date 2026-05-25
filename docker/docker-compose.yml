@@ -1,0 +1,23 @@
+services:
+  timescaledb:
+    image: timescale/timescaledb:2.26.3-pg17
+    container_name: vnpy-timescaledb
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-vnpy}
+      POSTGRES_USER: ${POSTGRES_USER:-vnpy}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-vnpy@pwd}
+      TZ: ${TZ:-Asia/Shanghai}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - timescaledb-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  timescaledb-data:
