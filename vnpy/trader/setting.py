@@ -29,12 +29,12 @@ SETTINGS: dict = {
     "datafeed.password": "",
 
     "database.timezone": get_localzone_name(),
-    "database.name": "postgresql",
-    "database.database": "vnpy",
-    "database.host": "127.0.0.1",
-    "database.port": 5432,
-    "database.user": "vnpy",
-    "database.password": "3e*@%dr12"
+    "database.name": "sqlite",
+    "database.database": "database.db",
+    "database.host": "",
+    "database.port": 0,
+    "database.user": "",
+    "database.password": ""
 }
 
 

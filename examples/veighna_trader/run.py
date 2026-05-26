@@ -1,6 +1,3 @@
-import json
-from pathlib import Path
-
 from vnpy.event import EventEngine
 
 from vnpy.trader.engine import MainEngine
@@ -78,14 +75,6 @@ def main():
     # main_engine.add_app(RiskManagerApp)
     # main_engine.add_app(WebTraderApp)
     # main_engine.add_app(PortfolioManagerApp)
-
-    # 从 config/ctp/ 目录加载 CTP 连接配置
-    config_path = Path(__file__).parent.parent.parent / "config" / "ctp" / "simnow.json"
-    if config_path.exists():
-        with open(config_path, encoding="utf-8") as f:
-            setting: dict = json.load(f)
-        if setting.get("用户名"):
-            main_engine.connect(setting, "CTP")
 
     main_window = MainWindow(main_engine, event_engine)
     main_window.showMaximized()

@@ -1,7 +1,5 @@
-import json
 import multiprocessing
 import sys
-from pathlib import Path
 from time import sleep
 from datetime import datetime, time
 
@@ -20,8 +18,17 @@ SETTINGS["log.level"] = INFO
 SETTINGS["log.console"] = True
 
 
-with open(Path(__file__).parent.parent.parent / "config" / "ctp" / "simnow.json", encoding="UTF-8") as f:
-    ctp_setting: dict[str, str] = json.load(f)
+# CTP接口连接配置
+ctp_setting: dict[str, str] = {
+    "用户名": "",
+    "密码": "",
+    "经纪商代码": "",
+    "交易服务器": "",
+    "行情服务器": "",
+    "产品名称": "",
+    "授权编码": "",
+    "产品信息": ""
+}
 
 
 # Chinese futures market trading period (day/night)
